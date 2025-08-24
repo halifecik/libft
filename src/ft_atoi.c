@@ -2,27 +2,22 @@
 
 int	ft_atoi(const char *str)
 {
-	int	a;
+	int	i;
+	int	ret;
 	int	sign;
-	int	result;
 
-	result = 0;
 	sign = 1;
-	a = 0;
-	while ((str[a] == 32) || (str[a] >= 9 && str[a] <= 13))
+	ret = 0;
+	i = 0;
+	while ((str[i] == 32) || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if ((str[i] == 45) || (str[i] == 43))
 	{
-		a++;
-	}
-	if ((str[a] == 45) || (str[a] == 43))
-	{
-		if (str[a] == 45)
+		if (str[i] == 45)
 			sign = -1;
-		a++;
+		i++;
 	}
-	while (str[a] >= 48 && str[a] <= 57)
-	{
-		result = result * 10 + (str[a] - 48);
-		a++;
-	}
-	return (result * sign);
+	while (str[i] >= 48 && str[i] <= 57)
+		ret = ret * 10 + (str[i++] - 48);
+	return (ret * sign);
 }
