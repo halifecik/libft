@@ -2,26 +2,16 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	void	*rtn;
+	void	*ret;
 
 	if (!dst && !src)
 		return (0);
-	rtn = dst;
+	ret = dst;
 	if (dst > src)
-	{
-		while (len > 0)
-		{
+		while (len--)
 			*((char *)dst + len - 1) = *((char *)src + len - 1);
-			len--;
-		}
-	}
 	else
-	{
-		while (len)
-		{
+		while (len--)
 			*((char *)dst++) = *((char *)src++);
-			len--;
-		}
-	}
-	return (rtn);
+	return (ret);
 }
