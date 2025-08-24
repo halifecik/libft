@@ -21,23 +21,23 @@ char	*ft_itoa(int n)
 {
 	int		size;
 	int		sign;
-	char	*rtn;
+	char	*ret;
 
 	size = ft_digits(n);
-	rtn = malloc(sizeof(char) * (size + 1));
-	if (!rtn)
+	ret = malloc(sizeof(char) * (size + 1));
+	if (!ret)
 		return (NULL);
 	sign = 1;
-	rtn[size] = '\0';
+	ret[size] = '\0';
 	if (n < 0)
 	{
-		rtn[0] = '-';
+		ret[0] = '-';
 		sign = -1;
 	}
 	while (size-- > (sign == -1))
 	{
-		rtn[size] = '0' + (sign * (n % 10));
+		ret[size] = 48 + (sign * (n % 10));
 		n /= 10;
 	}
-	return (rtn);
+	return (ret);
 }
