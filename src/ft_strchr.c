@@ -5,11 +5,12 @@ char	*ft_strchr(const char *s, int c)
 	int				i;
 	unsigned char	ch;
 
-	i = 0;
 	ch = (unsigned char)c;
-	if (ch == '\0')
+	i = 0;
+	if (!ch)
 	{
-		i = ft_strlen(s);
+		while(s[i])
+			i++;
 		return ((char *)s + i);
 	}
 	while (s[i])
