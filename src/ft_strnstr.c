@@ -4,21 +4,18 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
 	size_t	j;
-	char	*ret;
+	const char	*ret;
 
-	ret = (char *)haystack;
+	ret = haystack;
 	if (!*needle)
 		return (ret);
 	i = -1;
 	while (++i < len && ret[i])
 	{
-		j = 0;
-		while (ret[i + j] == needle[j] && i + j < len)
-		{
+		j = -1;
+		while (i + ++j < len && ret[i + j] == needle[j])
 			if (needle[j + 1] == '\0')
 				return (ret + i);
-			j++;
-		}
 	}
-	return (0);
+	return (NULL);
 }
