@@ -7,5 +7,4 @@ void	ft_bzero(void *s, size_t n)
 	str = (unsigned char *)s;
 	while (n--)
 		*str++ = 0;
-	return (s);
 }
