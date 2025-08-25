@@ -3,18 +3,15 @@
 char	*ft_strrchr(const char *s, int c)
 {
 	int				i;
-	unsigned char	tch;
+	unsigned char	ch;
 
-	tch = (unsigned char)c;
-	i = ft_strlen(s);
+	ch = (unsigned char)c;
+	i = 0;
+	while (s[i])
+		i++;
 	if (s)
-	{
-		while (i >= 0)
-		{
-			if (s[i] == tch)
+		while (i--)
+			if (s[i] == ch)
 				return ((char *)&s[i]);
-			i--;
-		}
-	}
 	return (0);
 }
