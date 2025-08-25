@@ -2,11 +2,11 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t		i;
-	size_t		j;
-	const char	*ret;
+	size_t	i;
+	size_t	j;
+	char	*ret;
 
-	ret = haystack;
+	ret = (char *)haystack;
 	if (!*needle)
 		return (ret);
 	i = -1;
