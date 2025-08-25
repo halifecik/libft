@@ -21,7 +21,7 @@ ADD_DIR		= $(SRC_DIR)/additional
 BONUS_DIR	= $(SRC_DIR)/bonus
 
 # Source Files
-LIBC_SRC =	ft_atoi.c \
+LIBC_SRCS =	ft_atoi.c \
     		ft_isdigit.c \
     		ft_memset.c \
     		ft_strncmp.c \
@@ -45,7 +45,7 @@ LIBC_SRC =	ft_atoi.c \
     		ft_memmove.c \
     		ft_strlen.c
 
-ADD_SRC =	ft_itoa.c \
+ADD_SRCS =	ft_itoa.c \
     		ft_putchar_fd.c \
     		ft_putendl_fd.c \
     		ft_putnbr_fd.c \
@@ -58,11 +58,11 @@ ADD_SRC =	ft_itoa.c \
     		ft_substr.c
 
 # Sources & Objects
-LIBC_SRC = $(addprefix src/libc/, $(LIBC_SRC))
-ADD_SRC  = $(addprefix src/additional/, $(ADD_SRC))
+LIBC_SRC = $(addprefix src/libc/, $(LIBC_SRCS))
+ADD_SRC  = $(addprefix src/additional/, $(ADD_SRCS))
 
 SRCS = $(LIBC_SRC) $(ADD_SRC)
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
 
 # Output Binary
 NAME = libft.a
@@ -70,27 +70,22 @@ NAME = libft.a
 all: $(NAME)
 
 $(NAME): $(OBJS)
-    @echo "$(CYAN)Linking objects...$(RESET)"
-    @ar rcs $(NAME) $(OBJS)
-    @echo "$(BOLD)$(GREEN)Build complete: $(NAME)$(RESET)"
+	@echo "$(CYAN)Linking objects...$(RESET)"
+	@ar rcs $(NAME) $(OBJS)
+	@echo "$(BOLD)$(GREEN)Build complete: $(NAME)$(RESET)"
 
-obj/%.o: src/libc/%.c
-    @mkdir -p obj
-    @echo "$(YELLOW)Compiling $<...$(RESET)"
-    @$(CC) $(CFLAGS) -c $< -o $@
-
-obj/%.o: src/additional/%.c
-    @mkdir -p obj
-    @echo "$(YELLOW)Compiling $<...$(RESET)"
-    @$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: src/%.c
+	@mkdir -p $(dir $@)
+	@echo "$(YELLOW)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-    @echo "$(RED)Cleaning object files...$(RESET)"
-    @rm -rf $(OBJ_DIR)
+	@echo "$(RED)Cleaning object files...$(RESET)"
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-    @echo "$(RED)Removing binary...$(RESET)"
-    @rm -f $(NAME)
+	@echo "$(RED)Removing binary...$(RESET)"
+	@rm -f $(NAME)
 
 re: fclean all
 
