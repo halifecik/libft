@@ -12,7 +12,7 @@ char	*ft_strdup(const char *s1)
 		return (NULL);
 	i = -1;
 	while (s1[++i])
-		new[i] == s1[i];
+		new[i] = s1[i];
 	new[i] = '\0';
 	return (new);
 }
