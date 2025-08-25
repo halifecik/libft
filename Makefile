@@ -14,8 +14,8 @@ CFLAGS  = -Wall -Wextra -Werror -Iincludes
 
 # Directories
 SRC_DIR		= src
-OBJ_DIR		= obj
 INC_DIR		= includes
+OBJ_DIR		= src/obj
 LIBC_DIR  	= $(SRC_DIR)/libc
 ADD_DIR		= $(SRC_DIR)/additional
 BONUS_DIR	= $(SRC_DIR)/bonus
